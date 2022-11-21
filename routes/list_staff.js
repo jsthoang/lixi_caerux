@@ -14,7 +14,6 @@ router.use(express.json()); // for parsing application/json
 router.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 router.post("/", (req, res) => {
-    console.log(req.body);
     fs.writeFile("./lixi/listStaff.json", JSON.stringify(req.body), (err) => {
         if (err) console.log(err);
         else {
