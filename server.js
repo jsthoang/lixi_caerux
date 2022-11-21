@@ -13,4 +13,4 @@ app.use(function (req, res, next) {
 app.use("/list-staff", listStaff_Router);
 app.use("/prize", prize_Router);
 
-app.listen(3000);
+app.listen(process.env.PORT, function () {});
