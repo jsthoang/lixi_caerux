@@ -9,8 +9,12 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use("/list-staff", listStaff_Router);
 app.use("/prize", prize_Router);
 
-app.listen(process.env.PORT, function () {});
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`Server running on: http://localhost:${PORT}`));
