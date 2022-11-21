@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
             console.log("File written successfully");
         }
     });
-    res.send({ Status: "Ban da post thanh cong" });
+    res.send({ Status: "Ban da POST thanh cong" });
 });
 
 router.put("/:id", (req, res) => {
@@ -33,6 +33,7 @@ router.put("/:id", (req, res) => {
             console.log("File written successfully");
         }
     });
+    res.send({ Status: "Ban da PUT thanh cong" });
 });
 
 module.exports = router;
