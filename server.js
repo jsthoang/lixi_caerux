@@ -3,6 +3,7 @@ const app = express();
 // Router
 const listStaff_Router = require("./routes/list_staff");
 const prize_Router = require("./routes/prize");
+const gift_Router = require("./routes/gift");
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.use("/list-staff", listStaff_Router);
 app.use("/prize", prize_Router);
+app.use("/gift", gift_Router);
 
 const PORT = process.env.PORT || 3000;
 
