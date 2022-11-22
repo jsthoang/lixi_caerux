@@ -23,9 +23,9 @@ router.post("/", (req, res) => {
     res.send({ Status: "Ban da POST thanh cong" });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/", (req, res) => {
     const userId = req.params["id"];
-    gift_json[userId] = req.body;
+    gift_json = req.body;
     fs.writeFile("./lixi/gift.json", JSON.stringify(gift_json), (err) => {
         if (err) console.log(err);
         else {
