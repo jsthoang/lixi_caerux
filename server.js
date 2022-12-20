@@ -4,6 +4,22 @@ const app = express();
 const listStaff_Router = require("./routes/list_staff");
 const prize_Router = require("./routes/prize");
 const gift_Router = require("./routes/gift");
+const nunjucks = require("nunjucks");
+const authToken = require("./components/auth");
+nunjucks.configure("views", {
+    autoescape: true,
+    express: app,
+});
+
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+    res.render("index.njk");
+});
+
+app.post("/", (req, res) => {
+    console.log(req.body);
+});
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

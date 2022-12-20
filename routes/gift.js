@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const gift_json = require("../lixi/gift.json");
-
+const authToken = require("../components/auth.js");
 router.get("/", (req, res) => {
     res.send(JSON.stringify(gift_json));
 });
@@ -13,17 +13,17 @@ router.get("/:id", (req, res) => {
 router.use(express.json()); // for parsing application/json
 router.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-router.post("/", (req, res) => {
-    fs.writeFile("./lixi/gift.json", JSON.stringify(req.body), (err) => {
-        if (err) console.log(err);
-        else {
-            console.log("File written successfully");
-        }
-    });
-    res.send({ Status: "Ban da POST thanh cong" });
+router.post("/", authToken, (req, res) => {
+    // fs.writeFile("./lixi/gift.json", JSON.stringify(req.body), (err) => {
+    //     if (err) console.log(err);
+    //     else {
+    //         console.log("File written successfully");
+    //     }
+    // });
+    // res.send({ Status: "Ban da POST thanh cong" });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", authToken, (req, res) => {
     const userId = req.params["id"];
     gift_json[userId] = req.body;
     fs.writeFile("./lixi/gift.json", JSON.stringify(gift_json), (err) => {
