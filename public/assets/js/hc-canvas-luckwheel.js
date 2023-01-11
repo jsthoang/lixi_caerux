@@ -263,14 +263,18 @@ var baseUrl = "./";
         .then((response) => response.json())
         .then(async (dataNotification) => {
             if (!dataNotification) dataNotification = [];
-            dataNotification.forEach((item) => {
-                if (item.gift.search(".000") !== -1) {
-                    notification.push(`${item.name} đã trúng lì xì trị giá ${item.gift}VNĐ !!!`);
-                } else {
-                    notification.push(`${item.name} đã trúng phần thưởng bất ngờ!!!`);
-                }
-            });
+            localStorage.setItem("gifts", JSON.stringify(dataNotification));
         });
+    let local_gifts = JSON.parse(localStorage.getItem("gifts"));
+    console.log(local_gifts);
+    local_gifts.forEach((item) => {
+        if (item.gift.search(".000") !== -1) {
+            notification.push(`${item.name} đã trúng lì xì trị giá ${item.gift}VNĐ !!!`);
+        } else {
+            notification.push(`${item.name} đã trúng phần thưởng bất ngờ!!!`);
+        }
+    });
+    addNotification(notification);
 
     function addNotification(notification) {
         let textHtmlNotify = [];
@@ -320,7 +324,6 @@ var baseUrl = "./";
                 } else {
                     let user = JSON.parse(localStorage.getItem("user"));
                     document.getElementById("popup").style.display = "flex";
-                    console.log(data.search(".000"));
                     if (data.search(".000") !== -1) {
                         document.querySelector(".text_money").innerHTML = `Bạn đã trúng phần quà trị giá `;
                         document.getElementById("money").innerHTML = `${data} VNĐ`;
@@ -422,10 +425,12 @@ var baseUrl = "./";
                     await randomIndex(prizes);
                 } else {
                     prizes[index].number -= 1;
-
+                    if (prizes[index].number == 0) {
+                        prizes[index].percentage = 0;
+                    }
                     localStorage.setItem("prizes", JSON.stringify(prizes));
+                    updatePrize(index, prizes[index]);
                     document.querySelector("#timesSpin").innerHTML = user.timesSpin;
-                    console.log("avshc:", user.timesSpin);
                     return index;
                 }
             });
@@ -469,5 +474,15 @@ async function updateGift(gift) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(gift),
+    });
+}
+async function updatePrize(index, prize) {
+    fetch(`${baseUrl}prize/${index}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+        body: JSON.stringify(prize),
     });
 }

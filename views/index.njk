@@ -11,11 +11,11 @@
         <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
         <link rel="icon" type="image/vnd.microsoft.icon" href="assets/images/favicon.ico" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/c6ab5af1fe.js" crossorigin="anonymous"></script>
     </head>
 
     <body class="lucky_wheel">
-        <em> {{ key }} </em>
         <!-- header -->
         <header id="header">
             <div class="inner">
@@ -55,6 +55,10 @@
                         <span class="line three"></span>
                     </div>
                 </div>
+                <div class="user">
+                    <span ttip=''></span>
+                    <button class="log_out_btn util_pc"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                </div>
             </div>
             <div class="menu_sp util_sp">
                 <div class="thumb">
@@ -71,10 +75,23 @@
                         <li><a href="#">LIÊN HỆ</a></li>
                     </ul>
                 </nav>
+                <div class="user util_sp">
+                    <button class="log_out_btn util_sp">Đăng xuất</button>
+                </div>
+                
             </div>
         </header>
         <!-- /header -->
         <div id="main">
+            <div class="thumb_volume">
+                <img src="./assets/images/volume.png" alt="volume" width="48" height="48" />
+            </div>
+            <div class="thumb_mute">
+                <img src="./assets/images/mute.png" alt="mute" width="48" height="48" />
+            </div>
+            <audio controls id="audio_main">
+                <source src="./assets/images/nhac.mp3" />
+            </audio>
             <div class="inner">
                 <h1 class="util_pc">HAPPY NEW YEAR・HAPPY NEW YEAR・HAPPY NEW YEAR・HAPPY NEW YEAR・HAPPY NEW YEAR・</h1>
                 <h1 class="util_sp">HAPPY NEW YEAR・HAPPY NEW YEAR・HAPPY NEW YEAR・</h1>
@@ -110,18 +127,15 @@
                 <!--/login-->
                 <!-- about_us -->
                 <section class="section" id="about_us">
+                    <audio controls id="audio_wheel">
+                        <source src="./assets/images/wheel.wav" />
+                    </audio>
                     <div class="inner">
                         <div class="frog">
                             <img src="assets/images/frog.png" width="712" height="864" alt="frog" />
                             <div class="thumb line1">
                                 <img src="assets/images/firework.png" width="312" height="294" alt="firework" />
                             </div>
-                            <!--<div class="thumb line2">-->
-                            <!--<img src="assets/images/line2.png" width="148" height="176" alt="line2">-->
-                            <!--</div>-->
-                            <!--<div class="thumb line3">-->
-                            <!--<img src="assets/images/line3.png" width="281" height="104" alt="line3">-->
-                            <!--</div>-->
                         </div>
                         <div class="thumb number_1">
                             <img src="assets/images/number1.png" width="335" height="541" alt="number" />

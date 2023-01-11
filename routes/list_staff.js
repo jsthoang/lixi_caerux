@@ -24,7 +24,6 @@ router.post("/", (req, res) => {
     //     }
     // });
     // res.send({ Status: "Ban da POST thanh cong" });
-    console.log(req.body);
     let user_info_index = listStaff_json.findIndex((item) => {
         if (item.email === req.body.email && item.password === req.body.password) return item;
     });
@@ -37,7 +36,7 @@ router.post("/", (req, res) => {
     }
 });
 
-router.put("/:id", authToken, (req, res) => {
+router.put("/:id", (req, res) => {
     const userId = req.body.id - 1;
     if (listStaff_json[userId].timesSpin === 1 && req.body.timesSpin === 0) {
         listStaff_json[userId] = req.body;
@@ -54,6 +53,7 @@ router.put("/:id", authToken, (req, res) => {
     } else {
         res.status(405).send({ Status: "Error" });
     }
+    console.log(ehhe.req);
 });
 
 module.exports = router;

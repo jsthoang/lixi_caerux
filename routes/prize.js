@@ -26,12 +26,16 @@ router.post("/", authToken, (req, res) => {
 router.put("/:id", authToken, (req, res) => {
     const userId = req.params["id"];
     prize_json[userId] = req.body;
+    if ((req.body.number = 0)) {
+        prize_json[userId].percentage = 0;
+    }
     fs.writeFile("./lixi/prize.json", JSON.stringify(prize_json), (err) => {
         if (err) console.log(err);
         else {
             console.log("File written successfully");
         }
     });
+
     res.send({ Status: "Ban da PUT thanh cong" });
 });
 

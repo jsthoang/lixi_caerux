@@ -11,16 +11,11 @@ function addNotification(notification) {
 const user = JSON.parse(localStorage.getItem("user"));
 if (user) {
     const user_json = { email: user.email, password: user.password };
-    console.log(user);
-
     fetch(`${baseUrl}list-staff`, {
         method: "GET",
-        body: user_json,
     })
         .then((response) => response.json())
         .then(async (listStaff) => {
-            console.log(listStaff);
-
             let indexEmail = listStaff.findIndex((item) => {
                 if (item.email === user.email) return item;
             });
@@ -52,8 +47,9 @@ if (user) {
 }
 
 $(document).ready(function () {
-    localStorage.clear();
-
+    // localStorage.clear();
+    check_login();
+    user_name_logout();
     get_user();
     get_prizes();
 
@@ -114,7 +110,6 @@ $(document).ready(function () {
                     console.log("email not empty");
                     return;
                 }
-                console.log(login_input);
                 const data_user = await $.ajax({
                     type: "POST",
                     url: `${baseUrl}list-staff`,
@@ -123,7 +118,6 @@ $(document).ready(function () {
                     success: function (response) {},
                 });
                 const listStaff = [data_user.user];
-                console.log(data_user);
                 localStorage.setItem("accessToken", data_user.token.accessToken);
                 let accessToken = localStorage.getItem("accessToken");
                 let check = checkEmail(email, password, listStaff);
@@ -150,7 +144,6 @@ $(document).ready(function () {
                                     }
                                 }
                             });
-                            console.log(notification);
                             addNotification(notification);
                         });
                 } else {
@@ -175,7 +168,6 @@ $(document).ready(function () {
         });
 
         function checkEmail(email, password, listStaff) {
-            // console.log(email, password, listStaff);
             let checkEmail = false;
             let user = {};
             let index = listStaff.findIndex((item) => {
@@ -189,7 +181,8 @@ $(document).ready(function () {
 
             localStorage.setItem("user", JSON.stringify(user));
             let gifts = JSON.parse(localStorage.getItem("gifts"));
-
+            check_login();
+            user_name_logout();
             if (!gifts) gifts = [];
 
             let indexCheckGift;
@@ -204,3 +197,26 @@ $(document).ready(function () {
         }
     }
 });
+// Check logged in
+function check_login() {
+    let user = localStorage.getItem("user");
+    if (user != null) {
+        $("#log_out_btn").show();
+    }
+    $(".log_out_btn").click(function () {
+        $(this).hide();
+        localStorage.clear();
+        location.reload();
+    });
+}
+// Get user name for logout btn
+function user_name_logout() {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (user == null) {
+        $(".user").hide();
+        return;
+    }
+    $(".user").css("display", "flex");
+    $(".user >span").text(user.name);
+    $(".user >span").attr("ttip", `Lượt quay: ${user.timesSpin}`);
+}

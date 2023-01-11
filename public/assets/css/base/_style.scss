@@ -1,5 +1,43 @@
-
 .lucky_wheel {
+    #audio_wheel {
+        display: none;
+    }
+    #audio_main {
+        display: none;
+    }
+    .thumb_volume {
+        padding: 30px;
+        width: 160px;
+        height: 160px;
+        position: fixed;
+        z-index: 1000;
+        @include pc {
+            width: get_pc(160);
+            height: get_pc(160);
+        }
+        @include sp {
+            width: get_sp(60);
+            height: get_sp(60);
+            padding: get_sp(10);
+        }
+    }
+    .thumb_mute {
+        display: none;
+        padding: 30px;
+        width: 160px;
+        height: 160px;
+        position: fixed;
+        z-index: 1000;
+        @include pc {
+            width: get_pc(160);
+            height: get_pc(160);
+        }
+        @include sp {
+            width: get_sp(60);
+            height: get_sp(60);
+            padding: get_sp(10);
+        }
+    }
     #main {
         padding-top: 110px;
         position: relative;
@@ -71,6 +109,7 @@
                         padding: get_sp(30) get_sp(30);
                     }
                     h2 {
+                        color: #000;
                         font-size: 37px;
                         margin-bottom: 40px;
                         @include pc {
@@ -113,6 +152,7 @@
                             }
                             .tlt_item {
                                 h3 {
+                                    color: #000;
                                     font-size: 28px;
                                     line-height: 46px;
                                     @include pc {
@@ -132,16 +172,21 @@
                             .item_input {
                                 text-align: right;
                                 input {
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
                                     padding: 12px;
                                     border-radius: 4px;
                                     border: 1px solid #c1afaf;
                                     font-size: 22px;
-                                    width: 300px;
+                                    width: 360px;
+                                    background-color: #fff;
+                                    outline: none;
                                     @include pc {
                                         padding: get_pc(12);
                                         border-radius: get_pc(4);
                                         font-size: get_pc(22);
-                                        width: get_pc(300);
+                                        width: get_pc(360);
                                     }
                                     @include min_pc {
                                         padding: get_min_pc(10);
@@ -157,20 +202,21 @@
                                     }
                                 }
                                 .error {
+                                    text-align: left;
                                     display: block;
-                                    padding-top: 20px;
+                                    padding-top: 12px;
                                     font-size: 19px;
                                     color: red;
                                     @include pc {
-                                        padding-top: get_pc(20);
+                                        padding-top: get_pc(12);
                                         font-size: get_pc(19);
                                     }
                                     @include min_pc {
-                                        padding-top: get_min_pc(18);
+                                        padding-top: get_min_pc(11);
                                         font-size: get_min_pc(17);
                                     }
                                     @include sp {
-                                        padding-top: get_sp(15);
+                                        padding-top: get_sp(8);
                                         font-size: get_sp(13);
                                     }
                                 }
@@ -181,13 +227,13 @@
                                 cursor: pointer;
                                 display: inline-block;
                                 background-color: rgb(25, 162, 255);
-                                padding: 20px 30px;
+                                padding: 20px 40px;
                                 border-radius: 40px;
                                 font-size: 24px;
                                 color: #fff;
-                                border: 1px solid #afa8a8;
+                                border: none;
                                 @include pc {
-                                    padding: get_pc(20) get_pc(30);
+                                    padding: get_pc(20) get_pc(40);
                                     border-radius: get_pc(40);
                                     font-size: get_pc(24);
                                 }
@@ -197,9 +243,9 @@
                                     font-size: get_min_pc(22);
                                 }
                                 @include sp {
-                                    padding: get_sp(15) get_sp(20);
-                                    border-radius: get_sp(30);
-                                    font-size: get_sp(20);
+                                    padding: get_sp(13) get_sp(18);
+                                    border-radius: get_sp(28);
+                                    font-size: get_sp(18);
                                 }
                             }
                         }
@@ -231,7 +277,6 @@
                     @include sp {
                         max-width: get_sp(350);
                     }
-
                 }
                 .frog {
                     width: 466px;
@@ -543,7 +588,7 @@
                         @include pc {
                             width: get_pc(98);
                             height: get_pc(149);
-                            top: get_pc(-114)
+                            top: get_pc(-114);
                         }
                         @include min_pc {
                             width: get_min_pc(77);
@@ -553,7 +598,7 @@
                         @include sp {
                             width: get_sp(43);
                             height: get_sp(62);
-                            top: get_sp(-45)
+                            top: get_sp(-45);
                         }
                         img {
                             width: 100%;
@@ -970,7 +1015,7 @@
                                 width: get_pc(21);
                                 height: get_pc(19);
                                 right: get_pc(28);
-                                top: get_pc(56)
+                                top: get_pc(56);
                             }
                             @include min_pc {
                                 width: get_min_pc(20);
@@ -1045,4 +1090,3 @@
         }
     }
 }
-
