@@ -219,4 +219,5 @@ function user_name_logout() {
     $(".user").css("display", "flex");
     $(".user >span").text(user.name);
     $(".user >span").attr("ttip", `Lượt quay: ${user.timesSpin}`);
+    $("#timesSpin").text(user.timesSpin);
 }
