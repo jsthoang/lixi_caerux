@@ -509,20 +509,20 @@
                                         padding-top: get_sp(30);
                                     }
                                     p {
-                                        font-size: 37px;
+                                        font-size: 35px;
                                         line-height: 37px;
                                         padding: 0 255px;
                                         margin-bottom: 12px;
                                         text-align: center;
                                         font-weight: bold;
                                         @include pc {
-                                            font-size: get_pc(37);
+                                            font-size: get_pc(35);
                                             line-height: get_pc(37);
                                             padding: 0 get_pc(255);
                                             margin-bottom: get_pc(12);
                                         }
                                         @include min_pc {
-                                            font-size: get_min_pc(29);
+                                            font-size: get_min_pc(27);
                                             line-height: get_min_pc(29);
                                             padding: 0 get_min_pc(200);
                                             margin-bottom: get_min_pc(5);
