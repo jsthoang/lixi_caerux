@@ -324,6 +324,8 @@ var baseUrl = "./";
                 } else {
                     let user = JSON.parse(localStorage.getItem("user"));
                     document.getElementById("popup").style.display = "flex";
+                    var clap = document.getElementById("audio_clap");
+                    clap.play();
                     if (data.search(".000") !== -1) {
                         document.querySelector(".text_money").innerHTML = `Bạn đã trúng phần quà trị giá `;
                         document.getElementById("money").innerHTML = `${data} VNĐ`;
