@@ -266,7 +266,6 @@ var baseUrl = "./";
             localStorage.setItem("gifts", JSON.stringify(dataNotification));
         });
     let local_gifts = JSON.parse(localStorage.getItem("gifts"));
-    console.log(local_gifts);
     local_gifts.forEach((item) => {
         if (item.gift.search(".000") !== -1) {
             notification.push(`${item.name} đã trúng lì xì trị giá ${item.gift}VNĐ !!!`);
@@ -305,6 +304,7 @@ var baseUrl = "./";
         .then((response) => response.json())
         .then((data) => wheel(data));
     function wheel(prizes) {
+        let ehhe = prizes;
         hcLuckywheel.init({
             id: "luckywheel",
             config: function (callback) {
@@ -346,12 +346,10 @@ var baseUrl = "./";
             },
         });
     }
-
     const randomIndex = async (prizes) => {
         let user = JSON.parse(localStorage.getItem("user"));
         var gifts;
         let index;
-
         await fetch(`${baseUrl}gift`)
             .then((response) => response.json())
             .then(async (data) => {
@@ -389,7 +387,6 @@ var baseUrl = "./";
                 });
 
                 let scarcities = prizeRandom.map((item) => item.percentage);
-
                 if (!scarcities.length) return -1;
 
                 let scarcitiesRemoveFirstItem = [];
@@ -414,22 +411,16 @@ var baseUrl = "./";
                         arrayRandom.push(item);
                     }
                 });
-
                 let indexRandom = Math.floor(Math.random() * arrayRandom.length);
 
                 let gift = arrayRandom[indexRandom];
-
-                index = prizes.findIndex((item) => item.text === gift.text);
-
+                index = prizes.findIndex((item) => item.id === gift.id);
                 if (!prizes[index].number) {
                     await randomIndex(prizes);
                 } else {
                     prizes[index].number -= 1;
-                    if (prizes[index].number == 0) {
-                        prizes[index].percentage = 0;
-                    }
                     localStorage.setItem("prizes", JSON.stringify(prizes));
-                    updatePrize(index, prizes[index]);
+                    updatePrize(index, { number: prizes[index].number });
                     document.querySelector("#timesSpin").innerHTML = user.timesSpin;
                     return index;
                 }

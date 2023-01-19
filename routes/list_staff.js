@@ -53,7 +53,6 @@ router.put("/:id", (req, res) => {
     } else {
         res.status(405).send({ Status: "Error" });
     }
-    console.log(ehhe.req);
 });
 
 module.exports = router;
