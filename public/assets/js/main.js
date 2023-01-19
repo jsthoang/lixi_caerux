@@ -34,4 +34,5 @@
     };
     //scroll after
     window.onscroll = function () {};
+    $(document).ready(function () {});
 })(jQuery);

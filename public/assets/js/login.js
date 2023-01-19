@@ -123,6 +123,8 @@ $(document).ready(function () {
                 let check = checkEmail(email, password, listStaff);
                 if (check.checkEmail) {
                     $("#login").hide();
+                    var audio_main = document.querySelector("#audio_main");
+                    audio_main.play();
                     $("#timesSpin")[0].innerHTML = check.user.timesSpin;
 
                     await fetch(`${baseUrl}gift`, {
